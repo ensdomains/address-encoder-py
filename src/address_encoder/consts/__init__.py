@@ -1,0 +1,17 @@
+from address_encoder.consts.coin_maps import (
+    COIN_NAME_TO_TYPE,
+    COIN_TYPE_TO_NAME,
+    EVM_COIN_NAME_TO_TYPE,
+    EVM_COIN_TYPE_TO_NAME,
+    NON_EVM_COIN_NAME_TO_TYPE,
+    NON_EVM_COIN_TYPE_TO_NAME,
+)
+
+__all__ = [
+    "COIN_NAME_TO_TYPE",
+    "COIN_TYPE_TO_NAME",
+    "EVM_COIN_NAME_TO_TYPE",
+    "EVM_COIN_TYPE_TO_NAME",
+    "NON_EVM_COIN_NAME_TO_TYPE",
+    "NON_EVM_COIN_TYPE_TO_NAME",
+]
