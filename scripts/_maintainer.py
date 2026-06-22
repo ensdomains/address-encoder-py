@@ -177,5 +177,10 @@ def ask_yes_no(prompt: str) -> bool:
     return ask(prompt).lower() == "y"
 
 
-def ask_int(prompt: str) -> int:
-    return int(ask(prompt))
+def ask_int(prompt: str, *, hint: str = "Please enter an integer.") -> int:
+    while True:
+        value = ask(prompt)
+        try:
+            return int(value)
+        except ValueError:
+            print(hint)

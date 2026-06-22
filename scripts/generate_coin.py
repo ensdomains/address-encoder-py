@@ -68,7 +68,14 @@ def main() -> None:
         return
 
     raw_name = ask("Coin Name: ")
-    coin_type = ask_int("Coin Type: ")
+    coin_type = ask_int(
+        "Coin Type (SLIP-44 index, e.g. 501 for Solana): ",
+        hint=(
+            "Coin type must be an integer from SLIP-44 "
+            "(https://github.com/satoshilabs/slips/blob/master/slip-0044.md), "
+            "not a coin name or symbol."
+        ),
+    )
     full_name = ask("Full Name: ")
 
     coin_name, is_legacy = normalise_coin_name(raw_name)
