@@ -1,5 +1,10 @@
 from __future__ import annotations
 
+import os
+import subprocess
+import sys
+from pathlib import Path
+
 import pytest
 
 from address_encoder import get_coder_by_coin_name, get_coder_by_coin_type
@@ -10,6 +15,34 @@ from address_encoder.consts.coin_maps import (
     NON_EVM_COIN_TYPE_TO_NAME,
 )
 from address_encoder.utils.evm import coin_type_to_evm_chain_id
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SRC_DIR = REPO_ROOT / "src"
+
+
+def test_get_coder_by_coin_name_lazy_loads_requested_coin_only() -> None:
+    script = """
+import sys
+
+import address_encoder
+
+loaded = [name for name in sys.modules if name.startswith("address_encoder.coins.")]
+assert loaded == [], loaded
+
+address_encoder.get_coder_by_coin_name("btc")
+
+loaded = sorted(name for name in sys.modules if name.startswith("address_encoder.coins."))
+assert loaded == ["address_encoder.coins.btc"], loaded
+"""
+    env = {**os.environ, "PYTHONPATH": str(SRC_DIR)}
+    result = subprocess.run(
+        [sys.executable, "-c", script],
+        capture_output=True,
+        text=True,
+        env=env,
+        check=False,
+    )
+    assert result.returncode == 0, result.stderr or result.stdout
 
 
 def test_coin_name() -> None:

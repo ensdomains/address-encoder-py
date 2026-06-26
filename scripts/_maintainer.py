@@ -118,20 +118,7 @@ def list_coin_modules() -> list[str]:
     return sorted(
         path.stem
         for path in COINS_DIR.glob("*.py")
-        if path.stem not in {"__init__", "_registry"}
-    )
-
-
-def render_registry(coin_names: list[str]) -> str:
-    imports = "\n".join(f"from address_encoder.coins.{name} import {name}" for name in coin_names)
-    entries = ",\n    ".join(f'"{name}": {name}' for name in coin_names)
-    return (
-        "from __future__ import annotations\n\n"
-        "from address_encoder.types import CoinCoder\n\n"
-        f"{imports}\n\n"
-        "COINS: dict[str, CoinCoder] = {\n"
-        f"    {entries}\n"
-        "}\n"
+        if path.stem != "__init__"
     )
 
 
@@ -155,11 +142,8 @@ def render_coders(coin_names: list[str]) -> str:
 
 def regenerate_registry() -> None:
     coin_names = list_coin_modules()
-    registry = render_registry(coin_names)
-    (COINS_DIR / "__init__.py").write_text(registry)
-    (COINS_DIR / "_registry.py").write_text(registry)
     CODERS_PATH.write_text(render_coders(coin_names))
-    print(f"Updated registry for {len(coin_names)} coin modules")
+    print(f"Updated coders export for {len(coin_names)} coin modules")
 
 
 def markdown_table(headers: list[str], rows: list[list[object]]) -> str:

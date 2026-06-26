@@ -38,14 +38,6 @@ btc = get_coder_by_coin_name("btc")
 address = btc.encode(hex_to_bytes("0x76a91462e907b15cbf27d5425399ebf6f0fb50ebb88f1888ac"))
 ```
 
-### Lazy loading
-
-```python
-from address_encoder.async_ import get_coder_by_coin_name_async
-
-btc = await get_coder_by_coin_name_async("btc")
-```
-
 ### Direct coin imports
 
 ```python
@@ -108,4 +100,3 @@ If the coin is not listed in SLIP-44, open a PR to [add it there](https://github
 - `address_encoder.coders` — per-coin encode/decode function exports
 - `address_encoder.consts` — SLIP-44 and EVM chain mappings
 - `address_encoder.utils` — shared encoding primitives
-- `address_encoder.async_` — lazy-loading getters
