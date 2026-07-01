@@ -33,8 +33,9 @@ dependencies = [
 dev = ["pytest>=8.0.0", "mypy>=1.8.0", "ruff>=0.4.0"]
 
 [project.urls]
-Homepage = "https://github.com/ensdomains/address-encoder"
-Repository = "https://github.com/ensdomains/address-encoder"
+Homepage = "https://github.com/ens-integrations/address-encoder-py"
+Repository = "https://github.com/ens-integrations/address-encoder-py"
+PyPI = "https://pypi.org/project/address-encoder/"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/address_encoder"]

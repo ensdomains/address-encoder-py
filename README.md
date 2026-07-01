@@ -8,7 +8,11 @@ See [ENSIP-11](https://docs.ens.domains/ens-improvement-proposals/ensip-11-evmch
 
 ## Installation
 
-Coming soon to PyPI. In the meantime, install from source.
+```bash
+pip install address-encoder
+```
+
+Available on [PyPI](https://pypi.org/project/address-encoder/).
 
 For local development:
 
