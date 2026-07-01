@@ -1,8 +1,10 @@
 # address-encoder
 
-Encodes and decodes address formats for various cryptocurrencies. Converts addresses between human-readable text and their native binary representations for use with [EIP-2304](https://eips.ethereum.org/EIPS/eip-2304) and ENS multichain resolution.
+[![CI](https://github.com/ensdomains/address-encoder-py/actions/workflows/test.yml/badge.svg)](https://github.com/ensdomains/address-encoder-py/actions/workflows/test.yml)
 
-Source: [github.com/ensdomains/address-encoder-py](https://github.com/ensdomains/address-encoder-py)
+Encodes and decodes address formats for various cryptocurrencies.
+
+Converts addresses between human-readable text and their native binary representations for use with [EIP-2304](https://eips.ethereum.org/EIPS/eip-2304) and ENS multichain resolution.
 
 EVM compatible chains are either specified using SLIP-44 coin type or `0x80000000 | chainId` where `0x80000000` is the MSB (most significant bit) reserved at SLIP-44 and no coin types exist in that range. This is to avoid number collision with the existing coin types.
 
