@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "address-encoder"
-version = "1.0.1"
+version = "1.0.2"
 description = "Encodes and decodes address formats for various cryptocurrencies"
 readme = "README.md"
 license = "MIT"
@@ -33,8 +33,8 @@ dependencies = [
 dev = ["pytest>=8.0.0", "mypy>=1.8.0", "ruff>=0.4.0"]
 
 [project.urls]
-Homepage = "https://github.com/ens-integrations/address-encoder-py"
-Repository = "https://github.com/ens-integrations/address-encoder-py"
+Homepage = "https://github.com/ensdomains/address-encoder-py"
+Repository = "https://github.com/ensdomains/address-encoder-py"
 PyPI = "https://pypi.org/project/address-encoder/"
 
 [tool.hatch.build.targets.wheel]
