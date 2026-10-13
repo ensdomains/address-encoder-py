@@ -18,3 +18,13 @@ def test_icx_decode(text: str, hex_value: str) -> None:
 def test_icx_encode(expected_text: str, hex_value: str) -> None:
     assert encode_icx_address(bytes.fromhex(hex_value)) == expected_text
 
+
+@pytest.mark.parametrize('text', [
+        'hx' + '1' * 39,
+        'hx' + '12 ' * 20,
+        'hx0x' + '12' * 20,
+        'hx' + 'zz' * 20,
+])
+def test_icx_decode_rejects_malformed_hex(text: str) -> None:
+    with pytest.raises(ValueError):
+        decode_icx_address(text)

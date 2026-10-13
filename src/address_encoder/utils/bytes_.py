@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import re
+
+_HEX_REGEX = re.compile(r"[0-9a-fA-F]*")
 
 def hex_to_bytes(hex_value: str) -> bytes:
     hex_string = hex_value[2:] if hex_value.startswith("0x") else hex_value
@@ -39,5 +42,11 @@ def base10_to_bytes(value: str) -> bytes:
     return number.to_bytes(length, "big")
 
 
+def hex_without_prefix_to_bytes(hex_value: str) -> bytes:
+    # Strict, like @noble/hashes hexToBytes: no 0x prefix, even length, hex digits only
+    if len(hex_value) % 2 or not _HEX_REGEX.fullmatch(hex_value):
+        raise ValueError(f'Invalid hex sequence in "{hex_value}".')
+    return bytes.fromhex(hex_value)
+
+
 bytes_to_hex_without_prefix = lambda data: data.hex()
-hex_without_prefix_to_bytes = hex_to_bytes
